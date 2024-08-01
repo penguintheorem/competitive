@@ -7,9 +7,13 @@ Each LinkedList node has an integer value as well as a next node pointing to the
 ### Example
 
 example 1:
+
 L = 2 -> 7 -> 3 -> 5 -> null
+
 O = 3 -> 5
 
 example 2:
+
 L = 2 -> 7 -> 3 -> null
+
 O = 7 -> 3
