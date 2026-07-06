@@ -5,7 +5,7 @@ const add = <T>(array: T[], newItem: T, index: number): T[] => {
   return [...firstHalf, newItem, ...secondHalf]
 }
 
-const getLongerPermutation = (
+const generateLongerPermutation = (
   permutation: number[],
   newNumber: number
 ): number[][] => {
@@ -21,10 +21,9 @@ const getLongerPermutation = (
 
 /**
  * N: array length
- * P = number of permutations = N!
  *
- * time = O(N! * N^2)
- * space = O(N * N!)
+ * time = O(N * N!) = O((N-1)! * N^2)
+ * space = O(N * N!) = O((N-1)! * N^2), total number of items you collect in permutations array
  */
 export const getPermutations = (array: number[]): number[][] => {
   if (!array?.length) {
@@ -34,14 +33,11 @@ export const getPermutations = (array: number[]): number[][] => {
     return [[array[0]]]
   }
 
-  // how much array.slice costs?
   const partialPermutations = getPermutations(array.slice(0, array.length - 1))
   const permutations: number[][] = []
-  // O(p)
   for (const partialPermutation of partialPermutations) {
-    // O(k^2)
     permutations.push(
-      ...getLongerPermutation(partialPermutation, array[array.length - 1])
+      ...generateLongerPermutation(partialPermutation, array[array.length - 1])
     )
   }
 
